@@ -1,3 +1,120 @@
+
+import java.lang.Runtime.*; 
+class MemoryDetails 
+  { 
+    public static void main(String []args) 
+      { 
+            Runtime r = Runtime.getRuntime(); 
+  System.out.println("Current Runtime: "+r); 
+ System.out.println("Total virtual memory: "+r.totalMemory()); 
+ System.out.println("Maximum memory will be used by JVM: "+r.maxMemory()); 
+ System.out.println("Available free memory in the JVM: "+r.freeMemory()); 
+            r.gc();  
+ System.out.println("Available free memory in the JVM after garbage collection: 
+"+r.freeMemory()); 
+      } 
+  }
+
+
+import java.util.Scanner; 
+class FixedPartitioning 
+  { 
+     public static void main(String []args) 
+      { 
+         int pm[] =new int[10]; 
+         int apc=0,tif=0,j; 
+  Scanner s=new Scanner(System.in); 
+         System.out.print("Enter the total available memory (in bytes): "); 
+         int tm=s.nextInt(); 
+                     System.out.print("Enter the block size: "); 
+         int bs=s.nextInt(); 
+         int nb=tm/bs; 
+         System.out.print("Enter the number of processes: "); 
+         int np=s.nextInt(); 
+         for(int i=1;i<=np;i++) 
+           { 
+              System.out.print("Enter the memory required for Process"+i+": "); 
+              pm[i]=s.nextInt(); 
+           } 
+         System.out.print("\n\nP_ID\tMemory Required\tAllocated\tInternal 
+Fragmentation"); 
+         for(j=1;j<=np && apc<nb;j++) 
+           { 
+               System.out.print("\n"+  j+" \t\t"+ pm[j]+"\t\t"); 
+               if(pm[j]>bs) 
+                 System.out.print("NO\t\t\t---\n"); 
+               else 
+                  {   
+                     int a=bs-pm[j]; 
+       System.out.print("YES\t\t\t"+ a +"\n"); 
+       tif=tif+a; 
+                     apc++;  
+                  } 
+            } 
+          if(j<np) 
+             System.out.println("Memory is Full, remaining processes cannot be 
+accommodated"); 
+             System.out.println("Total Internal Fragmentation ="+tif); 
+       } 
+  }
+
+
+
+import java.util.Scanner; 
+class VariablePartitioning 
+  { 
+     public static void main(String []args) 
+      { 
+         int pm[] =new int[10]; 
+         int i,j; 
+         Scanner s=new Scanner(System.in); 
+         System.out.print("Enter the total available memory (in bytes): "); 
+         int tm=s.nextInt(); 
+         int temp=tm; 
+         System.out.print("Enter the number of processes: "); 
+         int np=s.nextInt(); 
+         for(i=1;i<=np;i++) 
+           { 
+              System.out.print("Enter the memory required for Process"+i+": "); 
+              pm[i]=s.nextInt(); 
+              if(temp>=pm[i]) 
+                { 
+                  temp-=pm[i]; 
+                } 
+              else 
+                { 
+                  break; 
+                }   
+           } 
+         if (i<np) 
+            System.out.println(" Memory is full!!! Sorry process"+i+" cann't be 
+accommodated"); 
+         System.out.print("\n\n\tP_ID\t Allocated Memory(in bytes)"); 
+         for(j=1;j<i;j++) 
+           { 
+               System.out.println("\n\t "+  j+" \t\t"+ pm[j]); 
+           } 
+         System.out.println("Total External Fragmentation ="+temp); 
+       } 
+  }
+
+
+
+
+import java.lang.Runtime.*; 
+class ProcessInformation 
+  { 
+    public static void main(String []args) throws Exception 
+      { 
+        Runtime r = Runtime.getRuntime(); 
+        System.out.println("Current Runtime: "+r); 
+        System.out.println("Total number of processors in JVM: "+r.availableProcessors()); 
+      } 
+}
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,5 +280,6 @@ blog.html
     </p>
 </body>
 </html>
+
 
 
