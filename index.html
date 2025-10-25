@@ -52,7 +52,7 @@ class FixedPartitioning
            } 
          System.out.print("\n\nP_ID\tMemory Required\tAllocated\tInternal 
 Fragmentation"); 
-         for(j=1;j<=np && apc<nb;j++) 
+         for(j=1;j<=np && apc (lessthan) nb;j++) 
            { 
                System.out.print("\n"+  j+" \t\t"+ pm[j]+"\t\t"); 
                if(pm[j]>bs) 
@@ -65,7 +65,7 @@ Fragmentation");
                      apc++;  
                   } 
             } 
-          if(j<np) 
+          if(j(lessthan)np) 
              System.out.println("Memory is Full, remaining processes cannot be 
 accommodated"); 
              System.out.println("Total Internal Fragmentation ="+tif); 
@@ -100,11 +100,11 @@ class VariablePartitioning
                   break; 
                 }   
            } 
-         if (i<np) 
+         if (i(lessthan)np) 
             System.out.println(" Memory is full!!! Sorry process"+i+" cann't be 
 accommodated"); 
          System.out.print("\n\n\tP_ID\t Allocated Memory(in bytes)"); 
-         for(j=1;j<i;j++) 
+         for(j=1;j(lessthan)i;j++) 
            { 
                System.out.println("\n\t "+  j+" \t\t"+ pm[j]); 
            } 
@@ -282,6 +282,7 @@ blog.html
     </p>
 </body>
 </html>
+
 
 
 
